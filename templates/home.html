@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <p>
+        Keep track of your tasks effortlessly with our simple and intuitive to-do app. <br>
+        Whether you're managing your daily schedule or organizing your long-term goals, <br>
+        our app helps you stay on top of your tasks.
+    </p>
+    <div>
+        <a href="{{ url_for('login') }}">Login</a>
+        <br>
+        <a href="{{ url_for('register') }}">Sign Up</a>
+    </div>
+{% endblock %}

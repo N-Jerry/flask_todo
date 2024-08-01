@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+    <div>
+        <h3>Welcome {{ user.username }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.content }}</td>
+                        <td>{{ task.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>
+                            <a href="/edit/{{ task.id }}/{{ user.id }}">Edit</a>
+                            <br>
+                            <a href="/delete/{{ task.id }}/{{ user.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <form method="POST" action="{{ url_for('tasks') }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.content.label }}
+                {{ form.content }}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+    <a href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}
+
